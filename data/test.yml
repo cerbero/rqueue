@@ -1,0 +1,5 @@
+machine:
+ - id: 101010
+   name: pippo
+   ip: 196.154.1.2
+   cpu: 6
