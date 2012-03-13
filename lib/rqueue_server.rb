@@ -1,20 +1,26 @@
-require 'make_tab'
-require 'rake'
+require "rubygems"
 require 'drb'
-require 'wise'
 require 'net/ssh'
 
+require 'setup'
+require 'wise'
 
 
-def run_queue(url='druby://127.0.0.1:61676')
-	Setup.new
+setup = Setup.new
+setup.make_table
+setup.make_parser_machine
+setup.make_parser_job
+@sage = Wise.new
+
+
+def run_queue(url='druby://127.0.0.1:9001')
 	queue = Queue.new
 	DRb.start_service(url,queue)
 	jobs = Array.new
-	jobs = Wise.new.grab_job_to_exec
+	jobs = @sage.grab_job_to_exec
 	if jobs != nil
 		jobs.each do |jo|
-			queue.enq("request"=>jo,"from"=>NAME)
+			queue.enq("request"=>jo)
 		end 
 	end
 	#start code
@@ -23,30 +29,30 @@ def run_queue(url='druby://127.0.0.1:61676')
         end
 end
 
-run_queue do |job|
-        case job ["request"][0]
-		t=Thread.new{mind(job),self}
-		t.join
-        end
-end
  
-def mind (job,t)
+def mind (job,job_cpu,t)
 	
-	a = new Wise()
 	#sceglie la macchina con il minor spreco di cpu
-	b = a.greedy(job.cpu) 
+	b = @sage.greedy(job_cpu) 
         # chimata ssh del comando con grep dei parametri
-	Net::SSH.start(b.ip, b.ssh_user, :password => b.password ) do |ssh|
-        ssh.exec b.command do |ch, stream, data|
+	puts "in ssh"
+	puts b[:ip]
+	puts b[:ssh_user]
+	puts b[:ssh_pass]
+	puts job[:command]
+	Net::SSH.start(b[:ip], b[:ssh_user], :password => b[:ssh_pass] ) do |ssh|
+        ssh.exec job[:command] do |ch, stream, data|
          if stream == :stderr
                  puts "ERROR: #{data}"
 		 # put the job into error table
+		 a.persistence_with_error(job,"Job fail","ERROR: #{data}")
 		 t.kill
-        else
+         else
                  puts data
 		 t.kill
          end
         end
+	end
 	time_to_kill = b.start_date+(60*60*b.h_request)
 	while true do
 		 if Time.now == time_to_kill
@@ -55,16 +61,19 @@ def mind (job,t)
 	end
 	
 end
-
-        #controllo se sfora	
 			
 
 end
+
+run_queue do |job|
+		puts "in block"	
+		a_job = job["request"]
+		job_cpu = a_job [:cpu]
+                
+		t=Thread.new{mind(a_job,job_cpu,self)}
+                t.join
+        end
+
 	
 	
 	
-
-
- 
-
- 
