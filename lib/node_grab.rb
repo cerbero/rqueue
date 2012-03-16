@@ -1,10 +1,12 @@
 require 'rubygems'
 require 'drb'
-require 'sys/cpu'
 require 'open3'
 require 'facter'
 
-require '/home/matteo/sviluppo/rqueue_1.9/lib/job.rb'
+#require '/home/matteo/sviluppo/rqueue_1.9/lib/job.rb'
+#require '/home/matteo/sviluppo/rqueue_1.9/lib/wise.rb'
+require_relative 'job.rb'
+require_relative 'wise.rb' 
 
 
 #fix a name client for test 
@@ -17,10 +19,12 @@ class GrabNode
 	
 	def grab_job
 		DRb.start_service
-		queue_class = DRbObject.new_with_uri('druby://127.0.0.1:61676')
+		#@queue_class = DRbObject.new_with_uri('druby://127.0.0.1:61676')
+		#@queue_class = DRbObject.new_with_uri('druby://192.168.11.123:61676')
+		@queue_class = DRbObject.new_with_uri('druby://192.168.13.11:61676')
 		puts 'Listening for connection ...'
 
-       		while job = queue_class.coda.deq
+       		while job = @queue_class.coda.deq
 			if job["request"].cpu.to_i<=@cpu
 				exec_job(job)
 			end
@@ -35,6 +39,16 @@ class GrabNode
 		puts @wait_thr.value.pid
 		puts @wait_thr.value.success?
 		write_a_file(job)
+			# if job fail put it in the job_error table otherwise
+			# puts done and delete from table job_to_exec
+			if @wait_thr.value.success? == false
+				@wise = Wise.new(@queue_class.db)
+				@wise.persistence_with_error(job,"job fail","stderror")
+			else
+				@wise = Wise.new(@queue_class.db)
+				@wise.delete_done_job(job)
+			end
+
 		@stdin.close  
 		@stdout.close
 		@stderr.close

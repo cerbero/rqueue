@@ -1,10 +1,13 @@
 require 'drb'
 require 'sequel'
 
-require '/home/matteo/sviluppo/rqueue_1.9/lib/setup.rb'
-require '/home/matteo/sviluppo/rqueue_1.9/lib/wise.rb'
-require '/home/matteo/sviluppo/rqueue_1.9/lib/job.rb'
+#require '/home/matteo/sviluppo/rqueue_1.9/lib/setup.rb'
+#require '/home/matteo/sviluppo/rqueue_1.9/lib/wise.rb'
+#require '/home/matteo/sviluppo/rqueue_1.9/lib/job.rb'
 
+require_relative 'setup.rb'
+require_relative 'wise.rb'
+require_relative 'job.rb'
 
 
 class Rqueue
@@ -13,8 +16,8 @@ class Rqueue
 
 	def initialize
 		@coda = Queue.new
-		@db = Sequel.sqlite("/home/matteo/sviluppo/rqueue/data/test.db") 
-		setup = Setup.new(@db)
+		@db = Sequel.sqlite("test.db") 
+		@setup = Setup.new(@db)
 		setup.make_table
 		setup.make_parser_machine
 		@sage = Wise.new(@db)
@@ -47,6 +50,8 @@ class Rqueue
 end
 
 
-DRb.start_service 'druby://127.0.0.1:61676',Rqueue.new 
+#DRb.start_service 'druby://127.0.0.1:61676',Rqueue.new 
+#DRb.start_service 'druby://192.168.11.123:61676',Rqueue.new
+DRb.start_service 'druby://192.168.13.11:61676',Rqueue.new
 DRb.thread.join
 

@@ -1,3 +1,5 @@
+require_relative 'wise.rb'
+
 class Job
 	#in order to describe a Job must have 
 	#an id , command to run at node, date to start and stop 
@@ -18,12 +20,14 @@ class Job
 		
 	end
 	def persistence(db)
+		puts "data base in persistence"
+		puts db
 		w = Wise.new(db)
 		a = w.persistence(self)
 		return a
 	end
 	def persistence_err
-		w = Wise.new(@db)
+		w = Wise.new(db)
                 a = persistence_with_error(self)
                 return a
 

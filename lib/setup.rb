@@ -1,7 +1,7 @@
 require "rubygems"
 require "sequel"
-require "/home/matteo/sviluppo/rqueue_1.9/lib/parser.rb"
-
+#require "/home/matteo/sviluppo/rqueue_1.9/lib/parser.rb"
+require_relative 'parser.rb'
 
 
 
@@ -46,7 +46,7 @@ class Setup
  	  String :stop_date
  	  Int :h_request
  	  Int :cpu
-  	  String :msg1
+  	  String :msg
 	  String :stderr
 	end
 	end

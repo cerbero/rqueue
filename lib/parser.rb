@@ -1,5 +1,6 @@
 require 'yaml'
-require '/home/matteo/sviluppo/rqueue_1.9/lib/machine.rb'
+#require '/home/matteo/sviluppo/rqueue_1.9/lib/machine.rb'
+require_relative 'machine'
 require 'time'
 require 'sequel'
 
