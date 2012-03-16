@@ -1,13 +1,18 @@
 job:
  - id: 1
-   command: ls
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test.sh
    h_request: 1
    cpu: 1
  - id: 2
-   command: sh /home/matteo/bowtie2-2.0.0-beta5/bowtie2
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test2.sh
    h_request: 1
    cpu: 1
  - id: 3
-   command: ls -altr
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test3.sh
    h_request: 1
    cpu: 1
+ - id: 4
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test4.sh
+   h_request: 1
+   cpu: 1
+

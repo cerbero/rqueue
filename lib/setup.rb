@@ -1,13 +1,19 @@
 require "rubygems"
 require "sequel"
-require "parser"
+require "/home/matteo/sviluppo/rqueue_1.9/lib/parser.rb"
+
+
+
 
 class Setup 
 
 	attr_accessor :db, :file
 	
-	def initialize
-		@db = Sequel.sqlite('../data/test.db')
+	def initialize(db)
+		DRb.start_service
+#                queue_class = DRbObject.new_with_uri('druby://127.0.0.1:61676')
+#		@db = Sequel.sqlite('../data/test.db')
+		@db = db
 	end
 		
 	def make_table	
@@ -47,12 +53,12 @@ class Setup
 	
 	def make_parser_machine
 		@file = "../data/test.yml"
-		par = Parser.new(@file)
+		par = Parser.new(@file,@db)
 		par.goParserMachine
 	end
 	def make_parser_job
                 @file = "../data/test_job.yml"
-                par = Parser.new(@file)
+                par = Parser.new(@file,@db)
                 par.goParserJob
         end
 

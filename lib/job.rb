@@ -14,15 +14,16 @@ class Job
 		@cpu = cpu
 		@msg = msg
 		@stderr = stderr
+
 		
 	end
-	def persistence
-		w = Wise.new()
+	def persistence(db)
+		w = Wise.new(db)
 		a = w.persistence(self)
 		return a
 	end
 	def persistence_err
-		w = Wise.new()
+		w = Wise.new(@db)
                 a = persistence_with_error(self)
                 return a
 
