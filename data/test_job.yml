@@ -1,5 +1,6 @@
 job:
  - id: 1
+<<<<<<< HEAD
    command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test.sh
    h_request: 1
    cpu: 1
@@ -16,3 +17,16 @@ job:
    h_request: 1
    cpu: 1
 
+=======
+   command: ls
+   h_request: 1
+   cpu: 1
+ - id: 2
+   command: sh /home/matteo/bowtie2-2.0.0-beta5/bowtie2
+   h_request: 1
+   cpu: 1
+ - id: 3
+   command: ls -altr
+   h_request: 1
+   cpu: 1
+>>>>>>> 3d967e221b42e82b9a2f94d4f7297010b88aeb02
