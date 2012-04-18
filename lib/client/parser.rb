@@ -1,10 +1,9 @@
 require 'rubygems'
 
 require 'yaml'
-require_relative 'machine.rb'
 require 'time'
 require 'sequel'
-
+require 'socket'
 class Parser
 	attr_accessor :file
 	def initialize(file,db)
@@ -15,27 +14,10 @@ class Parser
 		end
 		@db = db
 	end
-<<<<<<< HEAD
-=======
-	def goParserMachine
-		if @db[:machine].empty?		
-			begin
-				@file_yml = YAML.load_file(@file)
-				@file_yml['machine'].each do |mac|
-					m = Machine.new mac['id'],mac['ip'],mac['name'],mac['cpu'],mac['ssh_user'],mac['ssh_pass'],0
-					m.persistence(@db)
-					end
-			rescue NoMethodError
-				raise "File Not Formatted"
-			end
-		end
-	end
->>>>>>> origin/master
 		
 	def goParserJob
                  if @db[:job_to_exec].empty? 
 		 	begin
-				puts "inizio caricare"
                        		@file_yml = YAML.load_file(@file)
                       		@file_yml['job'].each do |job|
                                 	m = Job.new job['id'],job['command'],Time.now.to_s,Time.now.to_s,job['h_request'],job['cpu'],local_ip,""

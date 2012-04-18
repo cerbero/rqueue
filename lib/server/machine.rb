@@ -1,4 +1,3 @@
-#require '/home/matteo/sviluppo/rqueue_1.9/lib/wise.rb'
 require_relative 'wise.rb'
 
 class Machine

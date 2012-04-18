@@ -1,0 +1,22 @@
+job:
+ - id: 1
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test.sh
+   h_request: 1
+   cpu: 1
+ - id: 2
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test2.sh
+   h_request: 1
+   cpu: 1
+ - id: 3
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test3.sh
+   h_request: 1
+   cpu: 1
+ - id: 4
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test4.sh
+   h_request: 1
+   cpu: 1
+ - id: 5
+   command: sh /home/matteo/sviluppo/rqueue_1.9/lib/script_test/test4.sh
+   h_request: 1
+   cpu: 3
+   

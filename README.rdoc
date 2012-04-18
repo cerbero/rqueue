@@ -1,16 +1,47 @@
 = rqueue
 
-Description goes here.
+rqueue is a simple and smart queue job manager. It's easy to install and more simple to use 
 
-== Contributing to rqueue
+== An owerview 
+
+Server Node provide at all clients and slave nodes a sharing distributed queue 
+for job . 
+All clients send to server job . 
+All  slave nodes listen the queue and process job if it can . 
+
+
+== Server Installation
  
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
-* Fork the project.
-* Start a feature/bugfix branch.
-* Commit and push until you are happy with your contribution.
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+*  Put server package in your server . 
+*  Edit server/data/config.yml with yours jruby Path and Gem Path
+*  Start server with bin/rqueue_server start
+*  Copy server/data/server.yml in all client and node machine
+
+== Node Installation
+
+*  Put node_grab package in all slave node 
+*  Edit node_grab/data/config.yml with yours jruby Path and Gem Path
+*  Start node_grab with bin/node_grab start
+
+== Client Installation
+
+*  Put client package in all client node
+*  Edit job list file in client/data/job.yml
+*  Start upload job with rqueue_client.rb script with jruby and -X+O option 
+
+
+== Troubleshoting
+
+If you receive this message : "PID file already exists" please restar demon with 
+the restart command . 
+
+== Editing the job file 
+job:
+ - id: "a uniq id"
+   command: "job"
+   h_request: "if the job exceeds this time is killed"
+   cpu: "number of cpu request for the job"
+
 
 == Copyright
 

@@ -1,5 +1,5 @@
 #require '/home/matteo/sviluppo/rqueue_1.9/lib/wise.rb'
-require_relative 'wise.rb'
+require 'wise.rb'
 
 class Machine
 	attr_accessor :id,:ip,:name,:cpu,:ssh_user,:ssh_pass,:cpu_load

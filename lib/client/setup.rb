@@ -57,7 +57,6 @@ class Setup
 
 	
 	
-<<<<<<< HEAD
 	@db.create_table? :job_done do
           primary_key :id
           String :command
@@ -73,18 +72,11 @@ class Setup
 
 	end
 
-=======
-	def make_parser_machine
-		puts "sono in parser machine"
-		@file = "../../data/test.yml"
-		par = Parser.new(@file,@db)
-		par.goParserMachine
-	end
->>>>>>> origin/master
+	
 	
 	def make_parser_job
 		puts "sono in parser"
-                @file = "../../data/test_job.yml"
+                @file = "data/job.yml"
                 par = Parser.new(@file,@db)
                 par.goParserJob
         end

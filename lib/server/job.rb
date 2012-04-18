@@ -6,16 +6,16 @@ class Job
 	# the number of cpu require for the job and time to 
 	# reserve machine a flag comp to define is a job is complete 
 	# or no
-	attr_accessor :id,:command,:start_d,:stop_d,:h_request,:cpu,:msg,:stderr	
-	def initialize(id,command,start_d,stop_d,h_request,cpu,msg1,stderr)
+	attr_accessor :id,:command,:start_d,:stop_d,:h_request,:cpu,:ip_client, :ip_node	
+	def initialize(id,command,start_d,stop_d,h_request,cpu,ip_client,ip_node)
 		@id = id
 		@command = command
 		@start_d = start_d
 		@stop_d = stop_d 
 		@h_request = h_request
 		@cpu = cpu
-		@msg = msg
-		@stderr = stderr
+		@ip_client = ip_client
+		@ip_node = ip_node 
 
 		
 	end

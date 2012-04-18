@@ -13,4 +13,12 @@ group :development do
   gem "rcov", ">= 0"
   gem "sqlite3"
   gem "sequel"
+  gem "drb"
+  gem "socket"
+  gem "yaml"
+  gem "thread"
+  gem "open3"
+  gem "ffi"
+  gem "facter"
+  gem "timeout"
 end
