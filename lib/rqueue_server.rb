@@ -1,4 +1,4 @@
-require '../lib/rqueue.rb'
+
 
 class Rqueue
 

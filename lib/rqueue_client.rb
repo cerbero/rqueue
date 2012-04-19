@@ -1,6 +1,5 @@
 #! /usr/bin/ruby
 
-require '../lib/rqueue.rb'
 
 
 

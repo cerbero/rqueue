@@ -1,6 +1,3 @@
-require '../lib/rqueue.rb'
-
-
 module JavaLang                    # create a namespace for java.lang
   include_package "java.lang"      # use java native thread instead of ruby thread
 end
