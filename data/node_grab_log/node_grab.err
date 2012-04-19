@@ -1,0 +1,9 @@
+LoadError: no such file to load -- rqueue
+  require at org/jruby/RubyKernel.java:1042
+  require at /home/matteo/.rvm/rubies/jruby-1.6.7/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36
+   (root) at ../lib/node_grab.rb:1
+LoadError: no such file to load -- rqueue
+  require at org/jruby/RubyKernel.java:1042
+  require at /home/matteo/.rvm/rubies/jruby-1.6.7/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36
+   (root) at ../lib/node_grab.rb:1
+/home/matteo/.rvm/rubies/jruby-1.6.7/lib/ruby/site_ruby/shared/builtin/javasupport/core_ext/module.rb:35 warning: replacing Thread with Java::JavaLang::Thread in constant 'Thread on class/module JavaLang

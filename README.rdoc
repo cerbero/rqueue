@@ -10,24 +10,22 @@ All clients send to server job .
 All  slave nodes listen the queue and process job if it can . 
 
 
-== Server Installation
+== Server
  
-*  Put server package in your server . 
-*  Edit server/data/config.yml with yours jruby Path and Gem Path
+*  Edit /data/CONFIG/config.yml with yours jruby Path and Gem Path
 *  Start server with bin/rqueue_server start
 *  Copy server/data/server.yml in all client and node machine
 
-== Node Installation
+== Node 
 
-*  Put node_grab package in all slave node 
-*  Edit node_grab/data/config.yml with yours jruby Path and Gem Path
+*  After copy server.yml
 *  Start node_grab with bin/node_grab start
 
-== Client Installation
+== Client
 
-*  Put client package in all client node
-*  Edit job list file in client/data/job.yml
-*  Start upload job with rqueue_client.rb script with jruby and -X+O option 
+
+*  Edit job list file in data/job/job.yml
+*  Start upload job with just run rqueue_client 
 
 
 == Troubleshoting

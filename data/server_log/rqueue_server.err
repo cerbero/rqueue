@@ -1,0 +1,8 @@
+SyntaxError: /home/matteo/sviluppo/rqueue_jruby/lib/def/setup.rb:55: syntax error, unexpected end-of-file
+
+  require at org/jruby/RubyKernel.java:1042
+  require at /home/matteo/.rvm/rubies/jruby-1.6.7/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36
+   (root) at /home/matteo/sviluppo/rqueue_jruby/lib/def/setup.rb:29
+  require at org/jruby/RubyKernel.java:1042
+  require at /home/matteo/sviluppo/rqueue_jruby/lib/rqueue.rb:36
+   (root) at ../lib/rqueue_server.rb:1

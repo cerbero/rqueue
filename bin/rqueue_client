@@ -1,0 +1,7 @@
+#!/bin/bash
+
+JRUBY=`less ../data/config/config.yml | grep "jruby_path" | awk '{print $2}'`
+export GEM_HOME=`less ../data/config/config.yml | grep "gem_path" | awk '{print $2}'`
+APP_PATH=../lib/rqueue_client.rb 
+
+$JRUBY --1.9 -X+O $APP_PATH
